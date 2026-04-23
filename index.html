@@ -1,1 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Turn your writing into a permanent, beautiful article page. Publish from your iPhone in seconds. Lives forever.">
+<meta property="og:title" content="xfile.me — Your writing, permanent">
+<meta property="og:description" content="Turn any writing into a beautiful article that lives forever. Share on X with a stunning card preview.">
+<title>xfile.me — Your writing, permanent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --white:   #ffffff;
+  --off:     #f5f5f0;
+  --gray-1:  #f0f0eb;
+  --gray-2:  #e2e2da;
+  --gray-3:  #a8a89e;
+  --gray-4:  #6b6b60;
+  --ink:     #1a1a16;
+  --ink-2:   #2e2e28;
+  --accent:  #1a1a16;
+  --gold:    #c9a84c;
+  --gold-lt: #e8d090;
+  --serif:   'Instrument Serif', Georgia, serif;
+  --sans:    'DM Sans', 'Helvetica Neue', sans-serif;
+}
 
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 0 40px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--gray-2);
+}
+
+.nav-brand {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+
+.nav-brand span { color: var(--gold); font-style: normal; }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: var(--gray-4);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: color 0.15s;
+}
+.nav-links a:hover { color: var(--ink); }
+
+.nav-cta {
+  background: var(--ink) !important;
+  color: var(--white) !important;
+  padding: 8px 20px !important;
+  border-radius: 100px !important;
+  font-weight: 500 !important;
+  font-size: 0.82rem !important;
+  transition: all 0.15s !important;
+}
+.nav-cta:hover { background: var(--ink-2) !important; transform: translateY(-1px); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  padding: 120px 40px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(201,168,76,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(26,26,22,0.03) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 28px;
+  padding: 6px 16px;
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 100px;
+  background: rgba(201,168,76,0.06);
+  opacity: 0;
+  animation: fadeUp 0.7s 0.1s ease forwards;
+}
+
+.hero-eyebrow::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+.hero-headline {
+  font-family: var(--serif);
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  font-weight: 400;
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  max-width: 900px;
+  margin-bottom: 8px;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.2s ease forwards;
+}
+
+.hero-headline em {
+  font-style: italic;
+  color: var(--gray-3);
+}
+
+.hero-sub {
+  font-family: var(--serif);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--gray-3);
+  margin-bottom: 36px;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.3s ease forwards;
+}
+
+.hero-body {
+  font-size: 1.05rem;
+  font-weight: 300;
+  color: var(--gray-4);
+  max-width: 480px;
+  line-height: 1.7;
+  margin-bottom: 44px;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.4s ease forwards;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.5s ease forwards;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--ink);
+  color: var(--white);
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  font-weight: 500;
+  padding: 14px 32px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: all 0.2s;
+  letter-spacing: -0.01em;
+}
+.btn-primary:hover { background: var(--ink-2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,26,22,0.15); }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--gray-4);
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  font-weight: 400;
+  padding: 14px 24px;
+  border-radius: 100px;
+  text-decoration: none;
+  border: 1px solid var(--gray-2);
+  transition: all 0.15s;
+  letter-spacing: -0.01em;
+}
+.btn-secondary:hover { border-color: var(--gray-3); color: var(--ink); }
+
+.hero-proof {
+  margin-top: 52px;
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: var(--gray-3);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.65s ease forwards;
+}
+
+/* ── CARD PREVIEW ── */
+.card-showcase {
+  margin-top: 64px;
+  width: 100%;
+  max-width: 520px;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.55s ease forwards;
+}
+
+.x-card {
+  background: var(--ink);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 32px 80px rgba(26,26,22,0.18), 0 8px 24px rgba(26,26,22,0.08);
+  position: relative;
+}
+
+.x-card-inner {
+  padding: 32px 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 200px;
+  justify-content: center;
+}
+
+.x-card-brand {
+  font-family: var(--sans);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.x-card-divider {
+  width: 32px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.5;
+}
+
+.x-card-title {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--white);
+}
+
+.x-card-byline {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.04em;
+}
+
+.x-card-footer {
+  padding: 14px 32px;
+  background: rgba(255,255,255,0.04);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  font-family: var(--sans);
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 0.08em;
+}
+
+/* ── STATS STRIP ── */
+.stats {
+  background: var(--off);
+  border-top: 1px solid var(--gray-2);
+  border-bottom: 1px solid var(--gray-2);
+  padding: 36px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+
+.stat-item {
+  flex: 1;
+  max-width: 200px;
+  text-align: center;
+  padding: 0 32px;
+  border-right: 1px solid var(--gray-2);
+}
+.stat-item:last-child { border-right: none; }
+
+.stat-num {
+  font-family: var(--serif);
+  font-size: 2.4rem;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  display: block;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.stat-label {
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: var(--gray-3);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ── HOW IT WORKS ── */
+.how {
+  padding: 100px 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+.section-headline {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--ink);
+  max-width: 560px;
+  margin-bottom: 64px;
+}
+
+.section-headline em { font-style: italic; color: var(--gray-3); }
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+}
+
+.step-card {
+  background: var(--off);
+  padding: 36px 28px;
+  position: relative;
+  transition: background 0.2s;
+}
+
+.step-card:hover { background: var(--gray-1); }
+
+.step-card:first-child { border-radius: 12px 0 0 12px; }
+.step-card:last-child  { border-radius: 0 12px 12px 0; }
+
+.step-num {
+  font-family: var(--serif);
+  font-size: 3rem;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  color: var(--gray-2);
+  line-height: 1;
+  margin-bottom: 20px;
+}
+
+.step-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--ink);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.step-icon svg {
+  width: 20px; height: 20px;
+  stroke: var(--white);
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.step-title {
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+.step-desc {
+  font-size: 0.82rem;
+  font-weight: 300;
+  color: var(--gray-4);
+  line-height: 1.6;
+}
+
+/* ── ARTICLE PREVIEW ── */
+.preview-section {
+  background: var(--off);
+  border-top: 1px solid var(--gray-2);
+  border-bottom: 1px solid var(--gray-2);
+  padding: 100px 40px;
+}
+
+.preview-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.preview-text {}
+
+.preview-article-mock {
+  background: var(--white);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(26,26,22,0.08), 0 4px 16px rgba(26,26,22,0.04);
+  border: 1px solid var(--gray-2);
+}
+
+.mock-header {
+  background: var(--ink);
+  padding: 14px 20px;
+  text-align: center;
+}
+
+.mock-masthead {
+  font-family: var(--sans);
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.mock-body {
+  padding: 28px 24px;
+}
+
+.mock-kicker {
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.mock-title {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+
+.mock-byline {
+  font-size: 0.68rem;
+  color: var(--gray-3);
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 0.5px solid var(--gray-2);
+}
+
+.mock-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mock-line {
+  height: 8px;
+  background: var(--gray-1);
+  border-radius: 4px;
+}
+.mock-line:nth-child(3) { width: 70%; }
+.mock-line:nth-child(6) { width: 85%; }
+
+.mock-footer {
+  padding: 14px 24px;
+  border-top: 0.5px solid var(--gray-2);
+  font-size: 0.65rem;
+  color: var(--gray-3);
+  text-align: center;
+}
+
+/* ── FEATURES ── */
+.features {
+  padding: 100px 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-top: 64px;
+}
+
+.feature-card {
+  padding: 36px 28px;
+  background: var(--off);
+  transition: background 0.2s;
+}
+
+.feature-card:hover { background: var(--gray-1); }
+
+.feature-card:first-child { border-radius: 12px 0 0 12px; }
+.feature-card:nth-child(3) { border-radius: 0 12px 12px 0; }
+.feature-card:nth-child(4) { border-radius: 0 0 0 12px; }
+.feature-card:last-child   { border-radius: 0 0 12px 0; }
+
+.feature-card:nth-child(4),
+.feature-card:nth-child(5),
+.feature-card:nth-child(6) {
+  margin-top: 2px;
+}
+
+.feature-icon {
+  width: 36px; height: 36px;
+  margin-bottom: 18px;
+}
+
+.feature-icon svg {
+  width: 36px; height: 36px;
+  stroke: var(--ink);
+  fill: none;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.feature-title {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+.feature-desc {
+  font-size: 0.82rem;
+  font-weight: 300;
+  color: var(--gray-4);
+  line-height: 1.6;
+}
+
+/* ── PRICING ── */
+.pricing {
+  background: var(--ink);
+  padding: 100px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.pricing::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 60% at 50% 0%, rgba(201,168,76,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.pricing .section-label { color: var(--gold); }
+
+.pricing .section-headline {
+  color: var(--white);
+  margin: 0 auto 16px;
+  max-width: 520px;
+}
+
+.pricing-sub {
+  font-size: 1rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 56px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.price-card {
+  display: inline-block;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px;
+  padding: 48px 56px;
+  margin-bottom: 40px;
+  min-width: 320px;
+  position: relative;
+}
+
+.price-badge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--gold);
+  color: var(--ink);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 5px 16px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+.price-amount {
+  font-family: var(--serif);
+  font-size: 5rem;
+  font-weight: 400;
+  letter-spacing: -0.06em;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.price-amount sup {
+  font-size: 2rem;
+  vertical-align: super;
+  letter-spacing: 0;
+}
+
+.price-desc {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 32px;
+  letter-spacing: 0.02em;
+}
+
+.price-features {
+  list-style: none;
+  margin-bottom: 36px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.price-features li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.65);
+}
+
+.price-features li::before {
+  content: '✓';
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--gold);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  font-weight: 600;
+  padding: 14px 36px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: all 0.2s;
+  letter-spacing: -0.01em;
+  width: 100%;
+  justify-content: center;
+}
+.btn-gold:hover { background: var(--gold-lt); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,0.3); }
+
+.pricing-note {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.2);
+  margin-top: 24px;
+  letter-spacing: 0.04em;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--off);
+  border-top: 1px solid var(--gray-2);
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-brand {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--ink);
+}
+
+.footer-brand span { color: var(--gold); font-style: normal; }
+
+.footer-links {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+}
+
+.footer-links a {
+  font-size: 0.78rem;
+  color: var(--gray-3);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.footer-links a:hover { color: var(--ink); }
+
+.footer-copy {
+  font-size: 0.72rem;
+  color: var(--gray-3);
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 0 20px; }
+  .nav-links li:not(:last-child) { display: none; }
+  .hero { padding: 100px 20px 60px; }
+  .steps { grid-template-columns: 1fr 1fr; }
+  .step-card:first-child  { border-radius: 12px 0 0 0; }
+  .step-card:nth-child(2) { border-radius: 0 12px 0 0; }
+  .step-card:nth-child(3) { border-radius: 0 0 0 12px; }
+  .step-card:last-child   { border-radius: 0 0 12px 0; }
+  .preview-inner { grid-template-columns: 1fr; gap: 40px; }
+  .features-grid { grid-template-columns: 1fr; }
+  .feature-card { border-radius: 0 !important; }
+  .feature-card:first-child { border-radius: 12px 12px 0 0 !important; }
+  .feature-card:last-child  { border-radius: 0 0 12px 12px !important; }
+  .how, .features, .preview-section { padding: 60px 20px; }
+  .stats { gap: 0; padding: 28px 20px; flex-wrap: wrap; }
+  .stat-item { border-right: none; border-bottom: 1px solid var(--gray-2); padding: 20px; min-width: 50%; }
+  .pricing { padding: 60px 20px; }
+  .price-card { padding: 40px 28px; min-width: 0; width: 100%; max-width: 360px; }
+  footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-brand">x<span>file</span>.me</a>
+  <ul class="nav-links">
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="https://times.xfile.me" class="nav-cta">Start Writing</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Now in beta</div>
+
+  <h1 class="hero-headline">
+    Your best thinking<br>
+    <em>deserves better</em><br>
+    than a buried tweet.
+  </h1>
+
+  <p class="hero-sub">Write once. Heard forever.</p>
+
+  <p class="hero-body">
+    Turn any writing into a permanent, beautiful article page in seconds —
+    published directly from your iPhone. Share on X with a card so good
+    people ask how you made it.
+  </p>
+
+  <div class="hero-actions">
+    <a href="https://times.xfile.me" class="btn-primary">
+      Start Writing
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <a href="#how" class="btn-secondary">See how it works</a>
+  </div>
+
+  <div class="card-showcase">
+    <div class="x-card">
+      <div class="x-card-inner">
+        <div class="x-card-brand">The X File Times</div>
+        <div class="x-card-divider"></div>
+        <div class="x-card-title">Why the Future of AI Belongs to the Builders</div>
+        <div class="x-card-byline">John Carter &nbsp;·&nbsp; April 2026</div>
+      </div>
+      <div class="x-card-footer">xfile.me · Permanent Record</div>
+    </div>
+  </div>
+
+  <p class="hero-proof">Permanently stored on Arweave &nbsp;·&nbsp; Never disappears &nbsp;·&nbsp; Fractions of a cent</p>
+</section>
+
+<!-- STATS -->
+<div class="stats reveal">
+  <div class="stat-item">
+    <span class="stat-num">∞</span>
+    <span class="stat-label">Permanence</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">30s</span>
+    <span class="stat-label">To publish</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">25¢</span>
+    <span class="stat-label">Per article</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">0</span>
+    <span class="stat-label">Monthly fees</span>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="section-label reveal">How it works</div>
+  <h2 class="section-headline reveal">Four steps from idea to <em>permanent</em></h2>
+
+  <div class="steps">
+    <div class="step-card reveal">
+      <div class="step-num">01</div>
+      <div class="step-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+      </div>
+      <div class="step-title">Paste your writing</div>
+      <div class="step-desc">Plain text, Markdown, ChatGPT output — anything works. xfile.me normalizes it automatically.</div>
+    </div>
+    <div class="step-card reveal">
+      <div class="step-num">02</div>
+      <div class="step-icon">
+        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      </div>
+      <div class="step-title">Preview instantly</div>
+      <div class="step-desc">See exactly how your article will look — clean typography, professional layout, perfect branding.</div>
+    </div>
+    <div class="step-card reveal">
+      <div class="step-num">03</div>
+      <div class="step-icon">
+        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+      </div>
+      <div class="step-title">Publish forever</div>
+      <div class="step-desc">One tap. Your article uploads to Arweave — the permanent web. It will never disappear.</div>
+    </div>
+    <div class="step-card reveal">
+      <div class="step-num">04</div>
+      <div class="step-icon">
+        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.63L18.244 2.25z"/></svg>
+      </div>
+      <div class="step-title">Share on X</div>
+      <div class="step-desc">Post to X with one tap. Your article expands into a prestige card that stops the scroll.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLE PREVIEW -->
+<section class="preview-section">
+  <div class="preview-inner">
+    <div class="preview-text">
+      <div class="section-label reveal">The finished article</div>
+      <h2 class="section-headline reveal">Every article looks like it came from a <em>serious publication</em></h2>
+      <p class="reveal" style="font-size:0.95rem;font-weight:300;color:var(--gray-4);line-height:1.75;margin-bottom:24px;">
+        The same refined template — clean serif type, generous spacing, elegant byline — applies to every article you publish. A recipe and a white paper both look equally professional.
+      </p>
+      <p class="reveal" style="font-size:0.95rem;font-weight:300;color:var(--gray-4);line-height:1.75;margin-bottom:32px;">
+        Your personal archive lives at <strong style="color:var(--ink);font-weight:500;">yourname.xfile.me</strong> — a byline you're proud to put in your X bio.
+      </p>
+      <a href="https://times.xfile.me" class="btn-primary reveal">
+        Publish your first article
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="preview-article-mock reveal">
+      <div class="mock-header">
+        <div class="mock-masthead">The X File Times</div>
+      </div>
+      <div class="mock-body">
+        <div class="mock-kicker">Analysis</div>
+        <div class="mock-title">Why the Future of AI Belongs to the Builders</div>
+        <div class="mock-byline">By John Carter &nbsp;·&nbsp; April 18, 2026 &nbsp;·&nbsp; 6 min read</div>
+        <div class="mock-lines">
+          <div class="mock-line"></div>
+          <div class="mock-line"></div>
+          <div class="mock-line"></div>
+          <div class="mock-line" style="width:70%"></div>
+          <div class="mock-line" style="margin-top:8px"></div>
+          <div class="mock-line"></div>
+          <div class="mock-line" style="width:85%"></div>
+        </div>
+      </div>
+      <div class="mock-footer">847 people have read this article &nbsp;·&nbsp; xfile.me</div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="section-label reveal">Everything included</div>
+  <h2 class="section-headline reveal">Built for serious writers<br><em>on the go</em></h2>
+
+  <div class="features-grid">
+    <div class="feature-card reveal">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="feature-title">Truly permanent</div>
+      <div class="feature-desc">Stored on Arweave — a decentralized network designed to keep data forever. Not "we'll try to keep it up." Actually permanent.</div>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+      </div>
+      <div class="feature-title">Mobile first</div>
+      <div class="feature-desc">Designed for iPhone. Add to your home screen and it feels like a native app. Publish from anywhere in under 30 seconds.</div>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.63L18.244 2.25z"/></svg>
+      </div>
+      <div class="feature-title">Prestige X cards</div>
+      <div class="feature-desc">Every article generates a stunning Twitter Card automatically. Black background, gold type, your headline. People ask how you made it.</div>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2zM1 10h22M1 14h22"/></svg>
+      </div>
+      <div class="feature-title">Pay once, own forever</div>
+      <div class="feature-desc">$5 gets you 20 articles. No subscription. No monthly guilt. Credits never expire. Top up when you need more.</div>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+      </div>
+      <div class="feature-title">Your personal archive</div>
+      <div class="feature-desc">Every article builds your permanent record at yourname.xfile.me. A byline worth putting in your bio.</div>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <div class="feature-title">Read counter</div>
+      <div class="feature-desc">See how many people have read each article. Milestone moments fuel you to publish again. Your audience compounds over time.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="section-label reveal">Simple pricing</div>
+  <h2 class="section-headline reveal" style="color:var(--white)">Start for <em style="color:var(--gold-lt)">five dollars.</em><br>Write forever.</h2>
+  <p class="pricing-sub reveal">No subscription. No monthly fees. No algorithm. Just your writing, permanent.</p>
+
+  <div class="price-card reveal">
+    <div class="price-badge">Most popular</div>
+    <div class="price-amount"><sup>$</sup>5</div>
+    <div class="price-desc">20 articles · 25¢ each · credits never expire</div>
+    <ul class="price-features">
+      <li>20 permanent article credits</li>
+      <li>Prestige X card on every article</li>
+      <li>Personal archive at yourname.xfile.me</li>
+      <li>Public or private toggle</li>
+      <li>Read counter on every article</li>
+      <li>Top up anytime at the same price</li>
+    </ul>
+    <a href="https://times.xfile.me" class="btn-gold">Get started — $5</a>
+  </div>
+
+  <p class="pricing-note reveal">Arweave storage costs fractions of a cent. We pass the savings on.</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">x<span>file</span>.me</div>
+  <ul class="footer-links">
+    <li><a href="https://times.xfile.me">The X File Times</a></li>
+    <li><a href="https://times.xfile.me">Sign in</a></li>
+    <li><a href="mailto:hello@xfile.me">Contact</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 xfile.me · Built on Arweave</div>
+</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach((el, i) => {
+  el.style.transitionDelay = (i % 4) * 0.08 + 's';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
